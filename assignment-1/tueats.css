@@ -1,0 +1,64 @@
+th {
+    font-weight: bold;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: #808080;
+}
+
+h1 {
+    color: #FFBB00;
+}
+
+a:hover {
+    color: #FFBB00;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+input {
+    margin-bottom: 12px;
+}
+
+hr {
+    border: 1px solid black;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin: auto;
+    gap: 20px;
+}
+
+.signup-form {
+    width: 45%;
+}
+
+.container::after {
+    content: "";
+    display: block;
+    width: 480px;
+    height: 360px;
+
+    /* Image address: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.towson.edu%2Fbrand%2Fvisual-guidelines%2Fbrand-marks%2Funiversity.html&psig=AOvVaw0tgKE6HT1UMeop3hMWgNAe&ust=1739493869956000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJiqt-O1v4sDFQAAAAAdAAAAABAE*/
+    background-image: url('tu.jpeg');
+
+    background-size: cover;
+    background-position: center;
+    right: 10px;
+    margin-top: -80px;
+}
+
+
+
+
+
+

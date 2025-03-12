@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TU Eats Completed</title>
+</head>
+<body>
+    <h1 id="header"></h1>
+    <ul id="userInfo">
+        <li>Email: </li>
+        <li>Password: </li>
+        <li>Referral code: </li>
+        <li>Password verify:</li>
+        <li>Checkbox: </li>
+    </ul>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        const username = params.get("username");
+        const email = params.get("email");
+        const code = params.get("referral") ? `${params.get("referral")} (free meal)` : "N/A";
+        const password = params.get("password");
+        const verify = params.get("verify");
+        const checkbox = params.get("checkbox") ? "True" : "False";
+
+        document.getElementById("header").textContent = `Hello, ${username}!`;
+
+        // Populate the unordered list with user information
+        const userInfoList = document.getElementById("userInfo");
+        userInfoList.innerHTML = `
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Referral Code:</strong> ${code}</li>
+            <li><strong>Passord:</strong> ${password}</li>
+            <li><strong>Password verify:</strong> ${verify}</li>
+            <li><strong>Checkbox:</strong> ${checkbox}</li>
+        `;
+    </script>
+</body>
+</html>

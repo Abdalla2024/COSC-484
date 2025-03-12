@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TU Eats</title>
+    <link rel="stylesheet" href="tueats.css">
+</head>
+<body>
+    <h1>Welcome To TU Eats</h1>
+
+    <div class="container">
+        <form class="signup-form" method="GET" action="tueats_completed.html" onsubmit="return verifyPass() && validReferral() && validUser()">
+            <label>Username: </label>
+            <input id="username" name="username" type="text" required /><br /><br />
+        
+            <label>Email: </label>
+            <input id="email" name="email" type="email" required /><br /><br />
+        
+            <label>Referral Code: </label>
+            <input id="referral" name="referral" type="text" onblur="validReferral()"><br />
+            <span id="referralMessage" style="color: red;"></span><br /><br />
+        
+            <label>Password: </label>
+            <input id="pass" name="password" type="password" required /><br /><br />
+        
+            <label>Verify Password: </label>
+            <input id="verify" name="verify" type="password" required /><br /><br />
+        
+            <input id="checkbox" name="checkbox" type="checkbox" value="True">Sign up for our newsletter<br /><br />
+            <input type="submit" />
+        </form>
+        
+    </div>
+
+    <hr>
+
+    <table>
+        <caption>Menu is subject to change, please visit our <a href="tueats_completed.html">main site</a> for more information</caption>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Calories</th>
+        </tr>
+        <tr>
+            <td>Item 1</td>
+            <td>Burger</td>
+            <td>$8</td>
+            <td>550</td>
+        </tr>
+        <tr>
+            <td>Item 2</td>
+            <td>Mozzarella Sticks</td>
+            <td>$7</td>
+            <td rowspan="2">400</td>
+        </tr>
+        <tr>
+            <td>Item 3</td>
+            <td>Fries</td>
+            <td>$4</td>
+        </tr>
+    </table>
+
+    <script>
+        function verifyPass() {
+            let pass = document.getElementById("pass").value;
+            let verify = document.getElementById("verify").value;
+            
+            if(pass == verify) {
+                return true;
+            }
+            alert("Passwords do not match");
+            return false;
+        }
+
+        function validReferral() {
+        let invalid = ["tucis", "bogo", "eatgood"];
+        let referralInput = document.getElementById("referral");
+        let message = document.getElementById("referralMessage");
+
+        let referral = referralInput.value.trim().toLowerCase();
+
+        if (invalid.includes(referral) && referral !== "") {
+            message.textContent = "This referral code is invalid";
+            referralInput.style.border = "2px solid red";
+            return false; 
+        } else {
+            message.textContent = "";
+            referralInput.style.border = "";
+            return true; 
+        }
+    }
+
+    function validUser() {
+        let username = document.getElementById("username").value;
+
+        if(username.length < 6) {
+            alert("Username must be at least 6 characters");
+            return false;
+        } else if(username.length > 24) {
+            alert("Username must be less than 24 characters long");
+            return false;
+        }
+        return true;
+    }
+    </script>
+</body>
+</html>
