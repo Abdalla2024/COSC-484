@@ -2,6 +2,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+const houses = [
+    { price: 240000, city: "baltimore" },
+    { price: 300000, city: "austin" },
+    { price: 400000, city: "austin" },
+    { price: 1000000, city: "seattle" },
+    { price: 325000, city: "baltimore" },
+    { price: 550000, city: "seattle" },
+    { price: 250000, city: "boston" }
+];
+
 app.use(express.json());
 
 app.get('/v1/zillow/zestimate', (req, res) => {
@@ -25,6 +35,24 @@ app.get('/v1/zillow/zestimate', (req, res) => {
     // Calculate Zestimate and return result
     const zestimate = sqftNum * bedNum * bathNum * 10;
     res.json({ zestimate });
+});
+
+// New endpoint for houses
+app.get('/v1/zillow/houses', (req, res) => {
+    const { city } = req.query;
+    
+    // If no city is provided, return empty array
+    if (!city) {
+        return res.json([]);
+    }
+    
+    // Filter houses by city
+    const filteredHouses = houses.filter(house => 
+        house.city.toLowerCase() === city.toLowerCase()
+    );
+    
+    // Return filtered houses or empty array if none found
+    res.json(filteredHouses);
 });
 
 // Start the server
