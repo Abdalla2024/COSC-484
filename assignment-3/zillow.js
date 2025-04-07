@@ -19,7 +19,7 @@ app.get('/v1/zillow/zestimate', (req, res) => {
 
     // Check if all parameters are valid integers
     if (!sqft || !bed || !bath) {
-        return res.status(400).json({ error: 'Missing required parameters: sqft, bed, bath' });
+        return res.status(404).json({ error: 'Missing required parameters: sqft, bed, bath' });
     }
 
     // Convert parameters to integers
@@ -29,7 +29,7 @@ app.get('/v1/zillow/zestimate', (req, res) => {
 
     // Validate that all parameters are valid integers
     if (isNaN(sqftNum) || isNaN(bedNum) || isNaN(bathNum)) {
-        return res.status(400).json({ error: 'All parameters must be valid integers' });
+        return res.status(404).json({ error: 'All parameters must be valid integers' });
     }
 
     // Calculate Zestimate and return result
@@ -53,6 +53,31 @@ app.get('/v1/zillow/houses', (req, res) => {
     
     // Return filtered houses or empty array if none found
     res.json(filteredHouses);
+});
+
+// New endpoint for prices
+app.get('/v1/zillow/prices', (req, res) => {
+    const { usd } = req.query;
+
+    // If no price provided, return 404
+    if (!usd) {
+        return res.status(404).json({ error: 'Missing required parameter: usd' });
+    }
+
+    const price = parseInt(usd);
+
+    // If price is not a valid integer, return 404
+    if (isNaN(price)) {
+        return res.status(404).json({ error: 'Price must be a valid integer' });
+    }
+
+    // Filter by price
+    const filteredHouses = houses.filter(house => 
+        house.price <= price
+    );
+
+    // Return filtered houses with 200 status code
+    res.status(200).json(filteredHouses);
 });
 
 // Start the server
