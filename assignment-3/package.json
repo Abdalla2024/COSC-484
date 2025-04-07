@@ -1,0 +1,12 @@
+{
+  "name": "zillow-zestimate-server",
+  "version": "1.0.0",
+  "description": "A server that calculates Zillow Zestimates",
+  "main": "zillow.js",
+  "scripts": {
+    "start": "node zillow.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 
