@@ -24,11 +24,18 @@ function ArticleList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <ul style={{ padding: 0 }}>
-      {articles.map(article => (
-        <ArticleItem key={article.id} article={article} />
-      ))}
-    </ul>
+    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px' }}>
+      <ul style={{ 
+        padding: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px' 
+      }}>
+        {articles.map(article => (
+          <ArticleItem key={article.id} article={article} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
